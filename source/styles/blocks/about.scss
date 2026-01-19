@@ -1,11 +1,11 @@
 .about {
   padding: 0 16px;
 
-  @media(min-width: $tablet-width) {
+  @media (min-width: $tablet-width) {
     padding: 0 30px;
   }
 
-  @media(min-width: $desktop-width-after) {
+  @media (min-width: $desktop-width-after) {
     padding-top: 120px;
   }
 }
@@ -15,7 +15,7 @@
   position: relative;
   margin-bottom: 32px;
 
-  @media(min-width: $desktop-width-after) {
+  @media (min-width: $desktop-width-after) {
     font-size: 36px;
     line-height: 40px;
     font-weight: 500;
@@ -32,9 +32,10 @@
     position: absolute;
     top: 0;
     left: 0;
-      @media(min-width: $desktop-width-after) {
+
+    @media (min-width: $desktop-width-after) {
       top: 6px;
-      }
+    }
   }
 }
 

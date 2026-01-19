@@ -1,7 +1,8 @@
 .projects {
   padding: 80px 16px 16px;
   background-color: var(--color-zinc-900);
-   @media(min-width: $tablet-width) {
+
+  @media (min-width: $tablet-width) {
     padding: 80px 30px 16px;
   }
 }
