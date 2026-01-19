@@ -1,1 +1,63 @@
-var n=document.querySelector(".header"),a=document.querySelector(".hero"),l=new IntersectionObserver(e=>{e.forEach(t=>{t.isIntersecting?n.classList.remove("hero--scrolled"):n.classList.add("hero--scrolled")})},{threshold:0,rootMargin:"-50px 0px 0px 0px"});l.observe(a);var o=window.matchMedia("(min-width: 1280px)"),d=document.querySelector(".projects-list"),p=e=>{let t=e.target.closest(".card__button"),c=e.target.closest(".projects-list__item");if(t&&!o.matches){let r=t.closest(".card").querySelector(".card__specification");r&&r.classList.toggle("card__specification--open");return}c&&o.matches&&(document.querySelectorAll(".projects-list__item--open").forEach(s=>{s.classList.remove("projects-list__item--open")}),c.classList.contains("projects-list__item--open")||c.classList.add("projects-list__item--open"))},i=()=>{document.querySelectorAll(".card__specification--open").forEach(e=>{e.classList.remove("card__specification--open")})};o.addEventListener("change",()=>{o.matches&&i()});document.addEventListener("keydown",e=>{!o.matches&&(e.key==="Escape"||e.code==="Escape")&&i()});d.addEventListener("click",e=>p(e));var m=()=>{let e=document.querySelector(".button-scroll");e&&e.addEventListener("click",t=>{t.preventDefault(),window.scrollTo({top:0,behavior:"smooth"})})};document.addEventListener("DOMContentLoaded",m);
+const breakpoint = window.matchMedia('(min-width: 1280px)');
+const projectsList = document.querySelector('.projects-list');
+
+const handleCardToggle = (event) => {
+  const button = event.target.closest('.card__button');
+  const projectsItem = event.target.closest('.projects-list__item');
+
+  if (button && !breakpoint.matches) {
+    const card = button.closest('.card');
+    const spec = card.querySelector('.card__specification');
+    if (spec) {
+      spec.classList.toggle('card__specification--open');
+    }
+    return;
+  }
+
+  if (projectsItem && breakpoint.matches) {
+    document.querySelectorAll('.projects-list__item--open').forEach((openCard) => {
+      openCard.classList.remove('projects-list__item--open');
+    });
+
+    if (!projectsItem.classList.contains('projects-list__item--open')) {
+      projectsItem.classList.add('projects-list__item--open');
+    }
+  }
+};
+
+const removeOpenClass = () => {
+  document.querySelectorAll('.card__specification--open').forEach((spec) => {
+    spec.classList.remove('card__specification--open');
+  });
+};
+
+breakpoint.addEventListener('change', () => {
+  if (breakpoint.matches) {
+    removeOpenClass();
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (!breakpoint.matches && (event.key === 'Escape' || event.code === 'Escape')) {
+    removeOpenClass();
+  }
+});
+
+projectsList.addEventListener('click', (event) => handleCardToggle(event));
+
+const setupScrollButton = () => {
+  const buttonScroll = document.querySelector('.button-scroll');
+  if (!buttonScroll) {
+    return;
+  }
+
+  buttonScroll.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  });
+};
+
+document.addEventListener('DOMContentLoaded', setupScrollButton);
